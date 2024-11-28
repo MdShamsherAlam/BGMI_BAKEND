@@ -58,17 +58,7 @@ class OrderService {
         }
     }
 
-    // async getOrderHistory(user) {
-    //     try {
-    //         const orders = await sequelize.query(
-    //             `SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC`,
-    //             { replacements: [user.id], type: QueryTypes.SELECT }
-    //         );
-    //         return orders;
-    //     } catch (error) {
-    //         throw new ErrorHandler(SERVER_ERROR, error);
-    //     }
-    // }
+ 
 
     async  getOrderHistory(user, page = 1, limit = 10) {
 
