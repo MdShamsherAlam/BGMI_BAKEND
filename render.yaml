@@ -5,7 +5,8 @@ services:
     region: oregon # Choose the region (e.g., oregon, frankfurt, etc.)
     branch: main # The branch in your Git repository to deploy
     repo: https://github.com/MdShamsherAlam/BGMI_BAKEND.git # Replace with your repository URL
-    buildCommand: npm install # Command to install dependencies
+    buildCommand: npm install --production=false
+
     startCommand: npm start # Command to start your application
     plan: free # Choose the pricing plan (free, starter, standard, etc.)
     autoDeploy: true # Automatically deploy on every commit to the branch
