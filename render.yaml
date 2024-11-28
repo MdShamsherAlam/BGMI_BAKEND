@@ -1,0 +1,18 @@
+services:
+  - type: web # Specifies this is a web service
+    name: bgmi_backend # Name of the service on Render
+    env: node # Specifies the environment is Node.js
+    region: oregon # Choose the region (e.g., oregon, frankfurt, etc.)
+    branch: main # The branch in your Git repository to deploy
+    repo: https://github.com/MdShamsherAlam/BGMI_BAKEND.git # Replace with your repository URL
+    buildCommand: npm install # Command to install dependencies
+    startCommand: npm start # Command to start your application
+    plan: free # Choose the pricing plan (free, starter, standard, etc.)
+    autoDeploy: true # Automatically deploy on every commit to the branch
+    envVars: # Environment variables for the application
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: your-database-connection-string
+      - key: API_KEY
+        value: your-api-key
