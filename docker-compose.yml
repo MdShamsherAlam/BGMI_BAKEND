@@ -1,0 +1,28 @@
+version: '3'
+services:
+  app:
+    build: ./  # Builds from the current directory
+    ports:
+      - "3000:3000"  # Maps port 3000 of the container to port 3000 of the host
+    volumes:
+      - .:/usr/src/app         # Maps the current directory to /usr/src/app in the container
+      - /usr/src/app/node_modules # Prevents overwriting node_modules with the host's node_modules
+    env_file:
+      - .env.development  # Load environment variables from this file
+    depends_on:
+      - mysql
+    command: ["sh", "-c", "sleep 10 && npm run start"]  # Wait for MySQL to be ready before starting the app
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: hrms_backend  # The database name
+    ports:
+      - "3306:3306"  # Maps port 3306 of the container to port 3306 of the host
+    volumes:
+      - mysql-data:/var/lib/mysql  # Persistent storage for MySQL data
+      - ./scripts:/docker-entrypoint-initdb.d  # Init scripts for MySQL
+
+volumes:
+  mysql-data:
